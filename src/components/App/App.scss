@@ -1,0 +1,170 @@
+@import './../../sass/fonts.scss';
+@import './../../sass/constants.scss';
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+	font-family: Inter;
+	font-style: normal;
+	font-weight: normal;
+	margin: 0;
+}
+
+.app {
+	background: $background-app;
+	min-height: 100vh;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+
+  &__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 16px 22px 13px;
+		margin-bottom: 26px;
+  }
+
+	&__title h1 {
+		font-family: Inter;
+		font-weight: 400;
+		font-size: 18px;
+		line-height: 28px;		
+		color: $heading-color;
+		margin: 0;
+		transition: color 0.4s;
+
+		&:hover {
+			color: $primary-color;
+		}
+	}
+
+	&__content {
+		padding: 0 22px;
+		max-width: 960px;
+		width: 100%;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		flex: 1 0 auto;
+	}
+}
+
+.header {
+	background: $background-color-base;
+
+	&__btn {
+		font-family: Inter;
+		font-weight: 400;
+		font-size: 18px;
+		line-height: 28px;
+		color: $heading-color;
+		border: 0;
+    background: $btn-primary-color;
+		cursor: pointer;
+		margin-right: 19px;
+		transition: color, background 0.4s;
+
+		&:hover {
+			color: $success-color;
+		}
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+		&--active {
+			color: $success-color;
+			height: 51px;
+			padding: 0 18px;
+			border: 1px solid $success-color;
+			border-radius: 5px;
+
+			&:hover {
+				background: $success-color;
+				color: $btn-primary-color;
+			}
+		}
+	}
+}
+
+.ant-pagination {
+	display: flex;
+	justify-content: center;
+	margin-top: auto;
+	margin-bottom: 17px;
+	font-family: Inter;
+	font-size: 12px;
+	line-height: 22px;
+}
+
+.ant-pagination-item-active {
+	background: $primary-color;
+	border-radius: 4px;
+
+	a {
+		color: $btn-primary-color;
+	}
+
+	&:hover {
+		a {
+			color: $btn-primary-color;
+		}
+	}
+}
+
+.btn {
+	border-radius: 4px;
+	background: $primary-color;
+	color: $btn-primary-color;
+	font-family: Inter;
+	padding: 6px 20px;
+  display: inline-block;
+	transition: opacity 0.4s;
+	font-size: 16px;
+	line-height: 24px;
+
+	&:hover {
+		color: $btn-primary-color;
+		opacity: 0.8;
+	}
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+		&__btn {
+    	font-size: 15px;
+			margin-right: 12px;
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			&--active {
+				height: 40px;
+				padding: 0 8px;
+			}
+		}
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .app {
+		&__content {
+    	padding: 0;
+		}
+  }
+}

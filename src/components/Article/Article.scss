@@ -1,0 +1,139 @@
+@import './../../sass/fonts.scss';
+@import './../../sass/constants.scss';
+
+.post {
+  filter: $filter-base;
+  background: $background-color-base;
+  padding: 15px 14px 24px;
+  margin-bottom: 26px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__header-right {
+    display: flex;
+  }
+
+  &__header-left {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  &__title {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    color: $primary-color;
+    margin: 0;
+  }
+
+  &__link {
+    text-decoration: none;
+  }
+
+  &__body {
+    margin-top: 5px;
+  }
+
+  &__text {
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 22px;
+    color: $text-color;
+    margin: 0;
+  }
+
+  &__btn-like {
+    margin-left: 13px;
+  }
+
+  &__tags {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-basis: 100%;
+  }
+
+  &__tag {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 15px;
+    color: $text-color-secondary;
+    padding: 2px 6px;
+    display: inline-block;
+    margin-right: 8px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__info {
+    margin-right: 12px;
+  }
+
+  &__author {
+    font-size: 18px;
+    line-height: 28px;
+    color: $heading-color;
+    margin: 0;
+  }
+
+  &__date {
+    font-size: 12px;
+    line-height: 22px;
+    color: $text-color-secondary;
+    margin: 0;
+  }
+
+  &__avatar {
+    width: 46px;
+    height: 46px;
+  }
+}
+
+.btn-like {
+  border: 0;
+  text-align: center;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 22px;
+  color: $text-color;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background: $background-color-base;
+
+  &__text {
+    margin-left: 5px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .post {
+    &__header {
+      flex-direction: column;
+    }
+
+    &__btn-like {
+      margin-left: auto;
+    }
+
+    &__header-right {
+      flex-direction: row-reverse;
+      align-self: flex-start;
+      margin-top: 10px;
+    }
+
+    &__info {
+      margin-right: 0;
+      margin-left: 12px;
+    }
+  }
+}
