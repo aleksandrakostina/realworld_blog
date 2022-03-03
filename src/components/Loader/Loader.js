@@ -1,8 +1,6 @@
-import React from "react";
-import {ReactComponent as Spinner} from './spinner.svg';
+import React from 'react';
+import { ReactComponent as Spinner } from './spinner.svg';
 
-const Loader = () => (
-  <Spinner />
-)
+const Loader = () => <Spinner />;
 
 export default Loader;

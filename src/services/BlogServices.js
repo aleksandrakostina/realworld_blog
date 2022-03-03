@@ -3,14 +3,13 @@ export default class BlogServices {
 
   articlesOnPage = 5;
 
-  getResponse = (url) => (
-    fetch(`${this.baseUrl}/${url}`).then(response => {
-      if(!response.ok) {  
+  getResponse = (url) =>
+    fetch(`${this.baseUrl}/${url}`).then((response) => {
+      if (!response.ok) {
         throw new Error('Could not get data');
       }
       return response.json();
-    })
-  );
+    });
 
   getArticles = (page) => {
     const offset = this.articlesOnPage * (page - 1);
