@@ -12,7 +12,7 @@ const Article = ({ article, isShort }) => (
     <div className="post__header">
       <div className="post__header-left">
         {isShort ? (
-          <Link to={`${article.slug}`}>
+          <Link to={`${article.slug}`} className="post__link">
             <h3 className="post__title">{article.title}</h3>
           </Link>
         ) : (
@@ -23,11 +23,14 @@ const Article = ({ article, isShort }) => (
           <span className="btn-like__text">{article.favoritesCount}</span>
         </button>
         <ul className="post__tags">
-          {[...new Set(article.tagList)].map((tag) => (
-            <li key={tag} className="post__tag">
-              {tag}
-            </li>
-          ))}
+          {[...new Set(article.tagList)].map(
+            (tag) =>
+              tag && (
+                <li key={tag} className="post__tag">
+                  {tag}
+                </li>
+              )
+          )}
         </ul>
       </div>
       <div className="post__header-right">

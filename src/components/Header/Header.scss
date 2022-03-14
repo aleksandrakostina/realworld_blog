@@ -1,0 +1,105 @@
+@import './../../sass/fonts.scss';
+@import './../../sass/constants.scss';
+
+.header {
+  background: $background-color-base;
+
+  &__title {
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: $heading-color;
+    margin: 0;
+    transition: color 0.4s;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
+  &__btn {
+    margin-right: 19px;
+    display: inline-block;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+
+  &__avatar {
+    display: inline-block;
+    margin-left: 13px;
+  }
+
+  &__profile {
+    margin: 0 27px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__btns {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logout-icon {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    &__username {
+      display: none;
+    }
+
+    &__avatar {
+      margin-left: 0;
+    }
+
+    &__logout-icon {
+      display: block;
+      cursor: pointer;
+      font-size: 24px;
+      transition: color 0.4s;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+
+  .btn-logout {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    &__btn {
+      margin-right: 12px;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+
+    &__title {
+      font-size: 16px;
+    }
+
+    &__create-post {
+      font-size: 0;
+      padding: 0;
+      height: 30px;
+      width: 30px;
+
+      &::before {
+        content: '+';
+        font-size: 20px;
+        line-height: 26px;
+      }
+    }
+  }
+}

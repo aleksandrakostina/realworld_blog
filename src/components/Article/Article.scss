@@ -6,6 +6,7 @@
   background: $background-color-base;
   padding: 15px 14px 24px;
   margin-bottom: 26px;
+  overflow: hidden;
 
   &__header {
     display: flex;
@@ -20,6 +21,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    width: 70%;
   }
 
   &__title {
@@ -31,7 +33,17 @@
   }
 
   &__link {
-    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration 0.4s;
+
+    &:hover {
+      text-decoration-color: $primary-color;
+      text-decoration: underline;
+    }
   }
 
   &__body {
@@ -39,7 +51,6 @@
   }
 
   &__text {
-    font-family: Inter;
     font-weight: 400;
     font-size: 12px;
     line-height: 22px;
@@ -59,7 +70,7 @@
   }
 
   &__tag {
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    border: 1px solid $text-color-secondary;
     box-sizing: border-box;
     border-radius: 2px;
     font-size: 12px;
@@ -129,6 +140,10 @@
       flex-direction: row-reverse;
       align-self: flex-start;
       margin-top: 10px;
+    }
+
+    &__header-left {
+      width: 100%;
     }
 
     &__info {
