@@ -12,21 +12,20 @@ const SignIn = () => {
   const { signIn } = useAuth();
 
   const methods = useForm();
-  const { handleSubmit, formState } = methods;
+  const {
+    handleSubmit,
+    formState: { isSubmitting },
+  } = methods;
 
   const [isError, setIsError] = useState(false);
 
   const onSubmit = async (data) => {
     setIsError(false);
-    try {
-      await signIn(data);
-    } catch {
-      setIsError(true);
-    }
+    return signIn(data).catch(() => setIsError(true));
   };
 
   return (
-    <Modal title="Sign In">
+    <Modal title="Sign In" className="modal modal--size-s">
       <FormProvider {...methods}>
         <form className="modal__form form" onSubmit={handleSubmit(onSubmit)}>
           <div className="form__group">
@@ -48,8 +47,8 @@ const SignIn = () => {
             />
           </div>
           {isError && <Alert closable message="Email or password is invalid" type="error" showIcon />}
-          <button type="submit" className="btn form__submit" disabled={formState.isSubmitting}>
-            {formState.isSubmitting ? <Spin indicator={<LoadingOutlined style={{ color: 'white' }} />} /> : 'Login'}
+          <button type="submit" className="btn form__submit" disabled={isSubmitting}>
+            {isSubmitting ? <Spin indicator={<LoadingOutlined style={{ color: 'white' }} />} /> : 'Login'}
           </button>
           <p className="form__text">
             Don`t have an account?{' '}

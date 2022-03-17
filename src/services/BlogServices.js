@@ -3,6 +3,7 @@ import { getToken } from '../utils/getToken';
 const GET = 'GET';
 const POST = 'POST';
 const PUT = 'PUT';
+const DELETE = 'DELETE';
 
 export default class BlogServices {
   baseUrl = 'https://kata.academy:8021/api';
@@ -13,6 +14,9 @@ export default class BlogServices {
     fetch(`${this.baseUrl}/${url}`, options).then((response) => {
       if (!response.ok) {
         throw new Error('Could not get data');
+      }
+      if (options.method === DELETE) {
+        return true;
       }
       return response.json();
     });
@@ -64,5 +68,20 @@ export default class BlogServices {
   getCurrentUser = () => {
     const options = this.getOptions({ method: GET, token: true });
     return this.getResponse(`user`, options);
+  };
+
+  createArticle = (article) => {
+    const options = this.getOptions({ method: POST, body: article, token: true });
+    return this.getResponse(`articles`, options);
+  };
+
+  deleteArticle = (id) => {
+    const options = this.getOptions({ method: DELETE, token: true });
+    return this.getResponse(`articles/${id}`, options);
+  };
+
+  updateArticle = (id, article) => {
+    const options = this.getOptions({ method: PUT, body: article, token: true });
+    return this.getResponse(`articles/${id}`, options);
   };
 }

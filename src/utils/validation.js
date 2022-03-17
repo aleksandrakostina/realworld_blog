@@ -3,7 +3,7 @@ import isUrlValid from 'url-validation';
 
 const validation = {
   email: {
-    required: { value: true, message: 'Enter email' },
+    required: { value: true, message: 'Please fill in your email' },
     validate: { emailValidator: (value) => isEmail(value) || 'Invalid email address' },
   },
   password: {
@@ -12,15 +12,27 @@ const validation = {
     maxLength: { value: 40, message: 'Your password needs to be no more 40 characters.' },
   },
   username: {
-    required: { value: true, message: 'Enter username' },
+    required: { value: true, message: 'Please fill in your username' },
     maxLength: { value: 20, message: 'Your username needs to be no more 20 characters.' },
     minLength: { value: 3, message: 'Your username needs to be at least 3 characters.' },
   },
   image: {
-    required: { value: false, message: 'Enter password' },
+    required: { value: false },
     validate: {
       urlValidator: (value) => isUrlValid(value) || value === '' || 'Invalid url',
     },
+  },
+  title: {
+    required: { value: true, message: 'Please fill in this field' },
+  },
+  description: {
+    required: { value: true, message: 'Please fill in this field' },
+  },
+  body: {
+    required: { value: true, message: 'Please fill in this field' },
+  },
+  tag: {
+    required: { value: false },
   },
 };
 

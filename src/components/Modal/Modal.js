@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Modal.scss';
 
-const Modal = ({ children, title }) => (
-  <div className="modal">
+const Modal = ({ children, title, className }) => (
+  <div className={className}>
     <div className="modal__content">
       <div className="modal__header">
         <h2 className="modal__title">{title}</h2>
@@ -16,6 +16,7 @@ const Modal = ({ children, title }) => (
 Modal.propTypes = {
   children: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
 };
 
 export default Modal;

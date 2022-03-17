@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.scss';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 import ArticleListPage from '../ArticleListPage';
 import ArticlePage from '../ArticlePage';
 import BlogServicesContext from '../BlogServicesContext/BlogServicesContext';
@@ -13,6 +13,8 @@ import SignUp from '../SignUp';
 import Header from '../Header';
 import ProtectedRoute from '../ProtectedRoute';
 import AuthProvider from '../AuthProvider';
+import NewArticle from '../NewArticle';
+import EditArticle from '../EditArticle';
 
 const blog = new BlogServices();
 
@@ -34,6 +36,14 @@ const App = () => (
                   </ProtectedRoute>
                 }
               />
+              <Route
+                path="articles/:slug/edit"
+                element={
+                  <ProtectedRoute>
+                    <EditArticle />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="sign-up" element={<SignUp />} />
               <Route path="sign-in" element={<SignIn />} />
               <Route
@@ -41,6 +51,14 @@ const App = () => (
                 element={
                   <ProtectedRoute>
                     <Profile />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="new-article"
+                element={
+                  <ProtectedRoute>
+                    <NewArticle />
                   </ProtectedRoute>
                 }
               />

@@ -1,0 +1,33 @@
+.fieldset-tags {
+  &__input {
+    max-width: 300px;
+  }
+
+  &__item {
+    margin-bottom: 5px;
+    display: flex;
+  }
+
+  &__btns {
+    margin-left: 17px;
+  }
+
+  &__button {
+    margin-right: 17px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.form-article {
+  &__group {
+    margin-bottom: 21px;
+  }
+
+  &__submit {
+    max-width: 319px;
+    width: 100%;
+  }
+}

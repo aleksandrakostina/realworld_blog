@@ -46,30 +46,31 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1 0 auto;
+    align-items: center;
   }
 }
 
 .ant-pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: auto;
-  margin-bottom: 17px;
-  font-family: Inter;
-  font-size: 12px;
-  line-height: 22px;
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: auto !important;
+  margin-bottom: 17px !important;
+  font-family: Inter !important;
+  font-size: 12px !important;
+  line-height: 22px !important;
 }
 
 .ant-pagination-item-active {
-  background: $primary-color;
-  border-radius: 4px;
+  background: $primary-color !important;
+  border-radius: 4px !important;
 
   a {
-    color: $btn-primary-color;
+    color: $btn-primary-color !important;
   }
 
   &:hover {
     a {
-      color: $btn-primary-color;
+      color: $btn-primary-color !important;
     }
   }
 }
@@ -90,6 +91,10 @@ body {
   &:hover {
     color: $btn-primary-color;
     opacity: 0.8;
+  }
+
+  &:disabled {
+    opacity: 0.6;
   }
 }
 

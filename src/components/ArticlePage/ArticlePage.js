@@ -5,6 +5,7 @@ import './ArticlePage.scss';
 import Article from '../Article';
 import Error from '../Error';
 import BlogServicesContext from '../BlogServicesContext/BlogServicesContext';
+import { useAuth } from '../useAuth';
 
 const ArticlePage = () => {
   const { slug } = useParams();
@@ -12,6 +13,7 @@ const ArticlePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const blog = useContext(BlogServicesContext);
+  const { user } = useAuth();
 
   useEffect(() => {
     blog
@@ -34,6 +36,6 @@ const ArticlePage = () => {
     return <Error />;
   }
 
-  return <Article article={article} isShort={false} />;
+  return <Article article={article} isShort={false} user={user} />;
 };
 export default ArticlePage;

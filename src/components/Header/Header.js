@@ -15,9 +15,9 @@ const Header = () => {
       </Link>
       {user ? (
         <div className="header__btns">
-          <button type="button" className="button button--success button--size-s header__create-post">
+          <Link to="new-article" className="button button--success button--size-s header__create-post">
             Create article
-          </button>
+          </Link>
           <div className="header__profile">
             <div className="header__username">
               <Link to="profile" className="button button--size-l button--unbordered">

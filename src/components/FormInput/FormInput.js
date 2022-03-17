@@ -7,26 +7,32 @@ const FormInput = ({ name, label, placeholder, rules, type, ...props }) => {
   const {
     register,
     formState: { errors },
+    control,
   } = useFormContext();
 
   return (
-    <label className="form__label">
-      {label}
+    <label className="label">
+      {label && label}
       <input
         type={type}
-        className={classNames('form__input', { 'form__input--error': errors[name] })}
+        className={classNames('input', { 'input--error': errors[name] })}
         placeholder={placeholder}
         {...register(name, rules)}
+        control={control}
         {...props}
       />
-      {errors[name] && <p className="form__error">{errors[name]?.message}</p>}
+      {errors[name] && <p className="error">{errors[name]?.message}</p>}
     </label>
   );
 };
 
+FormInput.defaultProps = {
+  label: '',
+};
+
 FormInput.propTypes = {
   name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   placeholder: PropTypes.string.isRequired,
   rules: PropTypes.instanceOf(Object).isRequired,
   type: PropTypes.string.isRequired,

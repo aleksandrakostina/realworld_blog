@@ -11,7 +11,11 @@ const Profile = () => {
   const { user, editUser } = useAuth();
 
   const methods = useForm();
-  const { handleSubmit, formState, setValue } = methods;
+  const {
+    handleSubmit,
+    formState: { isSubmitting },
+    setValue,
+  } = methods;
 
   const [isError, setIsError] = useState(false);
 
@@ -23,15 +27,11 @@ const Profile = () => {
 
   const onSubmit = async (data) => {
     setIsError(false);
-    try {
-      await editUser(data);
-    } catch {
-      setIsError(true);
-    }
+    return editUser(data).catch(() => setIsError(true));
   };
 
   return (
-    <Modal title="Edit Profile">
+    <Modal title="Edit Profile" className="modal modal--size-s">
       <FormProvider {...methods}>
         <form className="modal__form form" onSubmit={handleSubmit(onSubmit)}>
           <div className="form__group">
@@ -71,8 +71,8 @@ const Profile = () => {
             />
           </div>
           {isError && <Alert closable message="Faild to edit user" type="error" showIcon />}
-          <button type="submit" className="btn form__submit" disabled={formState.isSubmitting}>
-            {formState.isSubmitting ? <Spin indicator={<LoadingOutlined style={{ color: 'white' }} />} /> : 'Save'}
+          <button type="submit" className="btn form__submit" disabled={isSubmitting}>
+            {isSubmitting ? <Spin indicator={<LoadingOutlined style={{ color: 'white' }} />} /> : 'Save'}
           </button>
         </form>
       </FormProvider>

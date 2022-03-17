@@ -16,22 +16,24 @@ const SignUp = () => {
       agreement: true,
     },
   });
-  const { handleSubmit, getValues, watch, control, formState } = methods;
+  const {
+    handleSubmit,
+    getValues,
+    watch,
+    control,
+    formState: { isSubmitting },
+  } = methods;
   const agreement = watch('agreement');
 
   const [isError, setIsError] = useState(false);
 
   const onSubmit = async (data) => {
     setIsError(false);
-    try {
-      await signUp(data);
-    } catch {
-      setIsError(true);
-    }
+    return signUp(data).catch(() => setIsError(true));
   };
 
   return (
-    <Modal title="Create new account">
+    <Modal title="Create new account" className="modal modal--size-s">
       <FormProvider {...methods}>
         <form className="modal__form form" onSubmit={handleSubmit(onSubmit)}>
           <div className="form__group">
@@ -90,8 +92,8 @@ const SignUp = () => {
             />
           </div>
           {isError && <Alert closable message="Faild to create user" type="error" showIcon />}
-          <button type="submit" disabled={formState.isSubmitting || !agreement} className="form__submit">
-            {formState.isSubmitting ? <Spin indicator={<LoadingOutlined style={{ color: 'white' }} />} /> : 'Create'}
+          <button type="submit" disabled={isSubmitting || !agreement} className="form__submit">
+            {isSubmitting ? <Spin indicator={<LoadingOutlined style={{ color: 'white' }} />} /> : 'Create'}
           </button>
           <p className="form__text">
             Already have an account?{' '}
