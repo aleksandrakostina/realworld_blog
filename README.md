@@ -1,3 +1,3 @@
-Блог платформа
+# Блог платформа
 
 https://realworld-blog-three.vercel.app/
