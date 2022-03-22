@@ -71,7 +71,7 @@ const Profile = () => {
             />
           </div>
           {isError && <Alert closable message="Faild to edit user" type="error" showIcon />}
-          <button type="submit" className="btn form__submit" disabled={isSubmitting}>
+          <button type="submit" className="btn-submit form__btn-submit" disabled={isSubmitting}>
             {isSubmitting ? <Spin indicator={<LoadingOutlined style={{ color: 'white' }} />} /> : 'Save'}
           </button>
         </form>

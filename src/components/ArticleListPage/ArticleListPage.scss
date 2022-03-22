@@ -1,0 +1,29 @@
+@import './../../sass/fonts.scss';
+@import './../../sass/constants.scss';
+
+.pagination {
+  &.ant-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+    margin-bottom: 17px;
+    font-family: $font-family-primary;
+    font-size: $font-size-text-xxs;
+    line-height: $line-height-s;
+  }
+
+  .ant-pagination-item-active {
+    background: $brand-color;
+    border-radius: $border-radius-pagination;
+
+    a {
+      color: $btn-primary-color;
+    }
+
+    &:hover {
+      a {
+        color: $btn-primary-color;
+      }
+    }
+  }
+}

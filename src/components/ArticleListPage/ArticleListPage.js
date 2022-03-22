@@ -5,6 +5,7 @@ import Error from '../Error';
 import BlogServicesContext from '../BlogServicesContext/BlogServicesContext';
 import Loader from '../Loader';
 import { useAuth } from '../useAuth';
+import './ArticleListPage.scss';
 
 const ArticleListPage = () => {
   const [articles, setArticles] = useState([]);
@@ -53,6 +54,7 @@ const ArticleListPage = () => {
         total={totalArticles}
         onChange={onChangePage}
         showSizeChanger={false}
+        className="pagination"
       />
     </>
   );

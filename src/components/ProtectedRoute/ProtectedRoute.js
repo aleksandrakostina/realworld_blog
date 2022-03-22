@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Navigate, useLocation } from 'react-router-dom';
-import { getToken } from '../../utils/getToken';
+import { getToken } from '../../utils/token';
 import { useAuth } from '../useAuth';
 
 const ProtectedRoute = ({ children }) => {

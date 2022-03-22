@@ -5,7 +5,6 @@
   filter: $filter-base;
   background: $background-color-base;
   padding: 15px 14px 24px;
-  margin-bottom: 26px;
   overflow: hidden;
   width: 100%;
 
@@ -14,61 +13,76 @@
     justify-content: space-between;
   }
 
-  &__header-right {
-    display: flex;
-  }
-
-  &__header-left {
+  &__info-main {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    width: 70%;
+    flex: 1 1 auto;
+    margin-right: 15px;
+    overflow: hidden;
+  }
+
+  &__header-top {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 4px;
   }
 
   &__title {
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 28px;
-    color: $primary-color;
+    font-weight: $font-weight-regular;
+    font-size: $font-size-text-l;
+    line-height: $line-height-xl;
+    color: $brand-color;
     margin: 0;
   }
 
   &__link {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     text-decoration: underline;
     text-decoration-color: transparent;
     transition: text-decoration 0.4s;
 
     &:hover {
-      text-decoration-color: $primary-color;
+      text-decoration-color: $brand-color;
+      text-decoration: underline;
+    }
+
+    &:focus {
+      text-decoration-color: $brand-color;
       text-decoration: underline;
     }
   }
 
-  &__body {
+  &__content {
     margin-top: 16px;
   }
 
   &__text {
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 22px;
-    color: $text-color;
+    font-weight: $font-weight-regular;
+    font-size: $font-size-text-xxs;
+    line-height: $line-height-s;
+    color: $text-color-primary;
     margin: 0;
     max-width: 682px;
     width: 100%;
-    margin-right: 10px;
   }
 
-  &__content {
+  &__description {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &__body {
+    margin-top: 25px;
+
+    & > * {
+      font-family: $font-family-primary;
+    }
   }
 
   &__btns {
     display: flex;
+    margin-left: 10px;
   }
 
   &__button {
@@ -84,26 +98,7 @@
   }
 
   &__tags {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     flex-basis: 100%;
-  }
-
-  &__tag {
-    border: 1px solid $text-color-secondary;
-    box-sizing: border-box;
-    border-radius: 2px;
-    font-size: 12px;
-    line-height: 15px;
-    color: $text-color-secondary;
-    padding: 2px 6px;
-    display: inline-block;
-    margin-right: 8px;
-
-    &:last-child {
-      margin-right: 0;
-    }
   }
 
   &__info {
@@ -111,15 +106,15 @@
   }
 
   &__author {
-    font-size: 18px;
-    line-height: 28px;
+    font-size: $font-size-text-m;
+    line-height: $line-height-xl;
     color: $heading-color;
     margin: 0;
   }
 
   &__date {
-    font-size: 12px;
-    line-height: 22px;
+    font-size: $font-size-text-xxs;
+    line-height: $line-height-s;
     color: $text-color-secondary;
     margin: 0;
   }
@@ -133,10 +128,10 @@
 .btn-like {
   border: 0;
   text-align: center;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 22px;
-  color: $text-color;
+  font-weight: $font-weight-regular;
+  font-size: $font-size-text-xxs;
+  line-height: $line-height-s;
+  color: $text-color-primary;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -147,29 +142,24 @@
   }
 }
 
-@media screen and (max-width: 640px) {
-  .post {
-    &__header {
-      flex-direction: column;
-    }
+.tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 
-    &__btn-like {
-      margin-left: auto;
-    }
+  &__item {
+    border: 1px solid $text-color-secondary;
+    box-sizing: border-box;
+    border-radius: $border-radius-tag;
+    font-size: $font-size-text-xxs;
+    line-height: $line-height-xxs;
+    color: $text-color-secondary;
+    padding: 2px 6px;
+    display: inline-block;
+    margin-right: 8px;
 
-    &__header-right {
-      flex-direction: row-reverse;
-      align-self: flex-start;
-      margin-top: 10px;
-    }
-
-    &__header-left {
-      width: 100%;
-    }
-
-    &__info {
+    &:last-child {
       margin-right: 0;
-      margin-left: 12px;
     }
   }
 }

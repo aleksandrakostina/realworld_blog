@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Article.scss';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import { Link, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-import { HeartOutlined, UserOutlined } from '@ant-design/icons';
+import { HeartFilled, HeartOutlined, UserOutlined } from '@ant-design/icons';
 import Avatar from 'antd/lib/avatar/avatar';
 import { message, Popconfirm } from 'antd';
 import BlogServicesContext from '../BlogServicesContext/BlogServicesContext';
@@ -12,8 +12,15 @@ import BlogServicesContext from '../BlogServicesContext/BlogServicesContext';
 const Article = ({ article, isShort, user }) => {
   const blog = useContext(BlogServicesContext);
   const navigate = useNavigate();
+  const [favorited, setFavorited] = useState();
+  const [favoritesCount, setFavoritesCount] = useState();
 
-  const confirm = () =>
+  useEffect(() => {
+    setFavorited(article.favorited);
+    setFavoritesCount(article.favoritesCount);
+  }, [article]);
+
+  const handleDeleteArticle = () =>
     blog
       .deleteArticle(article.slug)
       .then(() => {
@@ -24,55 +31,75 @@ const Article = ({ article, isShort, user }) => {
         message.error('Error! The article was not deleted.');
       });
 
+  const handleFavoriteClick = () => {
+    if (user) {
+      if (favorited) {
+        blog.unFavoriteArticle(article.slug).then(() => {
+          setFavorited(false);
+          setFavoritesCount((prevFavoritesCount) => prevFavoritesCount - 1);
+        });
+      } else {
+        blog.favoriteArticle(article.slug).then(() => {
+          setFavorited(true);
+          setFavoritesCount((prevFavoritesCount) => prevFavoritesCount + 1);
+        });
+      }
+    }
+  };
+
   return (
     <article className="post">
       <div className="post__header">
-        <div className="post__header-left">
-          {isShort ? (
-            <Link to={`${article.slug}`} className="post__link">
+        <div className="post__info-main">
+          <div className="post__header-top">
+            {isShort ? (
+              <Link to={`${article.slug}`} className="post__link">
+                <h3 className="post__title">{article.title}</h3>
+              </Link>
+            ) : (
               <h3 className="post__title">{article.title}</h3>
-            </Link>
-          ) : (
-            <h3 className="post__title">{article.title}</h3>
-          )}
-          <button className="post__btn-like btn-like" type="button">
-            <HeartOutlined />
-            <span className="btn-like__text">{article.favoritesCount}</span>
-          </button>
-          <ul className="post__tags">
+            )}
+            <button className="post__btn-like btn-like" type="button" onClick={handleFavoriteClick}>
+              {!favorited || !user ? (
+                <HeartOutlined style={{ fontSize: '14px' }} />
+              ) : (
+                <HeartFilled style={{ color: '#FF0707', fontSize: '14px' }} />
+              )}
+              <span className="btn-like__text">{favoritesCount}</span>
+            </button>
+          </div>
+          <ul className="post__tags tags">
             {[...new Set(article.tagList)].map(
               (tag) =>
                 tag && (
-                  <li key={tag} className="post__tag">
+                  <li key={tag} className="tags__item">
                     {tag}
                   </li>
                 )
             )}
           </ul>
         </div>
-        <div className="post__header-right">
-          <div className="post__info">
-            <h5 className="post__author">{article.author.username}</h5>
-            <p className="post__date">{format(new Date(article.createdAt), 'MMMM d, yyyy')}</p>
-          </div>
-          <div className="post__avatar">
-            {article.author.image ? (
-              <Avatar src={article.author.image} size={46} alt="avatar" />
-            ) : (
-              <Avatar icon={<UserOutlined />} size={46} alt="avatar" />
-            )}
-          </div>
+        <div className="post__info">
+          <h5 className="post__author">{article.author.username}</h5>
+          <p className="post__date">{format(new Date(article.createdAt), 'MMMM d, yyyy')}</p>
+        </div>
+        <div className="post__avatar">
+          {article.author.image ? (
+            <Avatar src={article.author.image} size={46} alt="avatar" />
+          ) : (
+            <Avatar icon={<UserOutlined />} size={46} alt="avatar" />
+          )}
         </div>
       </div>
-      <div className="post__body">
-        <div className="post__content">
+      <div className="post__content">
+        <div className="post__description">
           <p className="post__text">{article.description}</p>
           {!isShort && article.author.username === user?.username && (
             <div className="post__btns">
               <Popconfirm
                 placement="rightTop"
                 title="Are you sure to delete this article?"
-                onConfirm={confirm}
+                onConfirm={handleDeleteArticle}
                 okText="Yes"
                 cancelText="No"
               >
@@ -89,7 +116,7 @@ const Article = ({ article, isShort, user }) => {
             </div>
           )}
         </div>
-        {!isShort && <ReactMarkdown>{article.body}</ReactMarkdown>}
+        <div className="post__body">{!isShort && <ReactMarkdown>{article.body}</ReactMarkdown>}</div>
       </div>
     </article>
   );
@@ -112,6 +139,7 @@ Article.propTypes = {
     description: PropTypes.string,
     slug: PropTypes.string,
     body: PropTypes.string,
+    favorited: PropTypes.bool,
   }).isRequired,
   isShort: PropTypes.bool.isRequired,
   user: PropTypes.shape({

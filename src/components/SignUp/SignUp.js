@@ -16,6 +16,7 @@ const SignUp = () => {
       agreement: true,
     },
   });
+
   const {
     handleSubmit,
     getValues,
@@ -23,6 +24,7 @@ const SignUp = () => {
     control,
     formState: { isSubmitting },
   } = methods;
+
   const agreement = watch('agreement');
 
   const [isError, setIsError] = useState(false);
@@ -92,7 +94,7 @@ const SignUp = () => {
             />
           </div>
           {isError && <Alert closable message="Faild to create user" type="error" showIcon />}
-          <button type="submit" disabled={isSubmitting || !agreement} className="form__submit">
+          <button type="submit" disabled={isSubmitting || !agreement} className="btn-submit form__btn-submit">
             {isSubmitting ? <Spin indicator={<LoadingOutlined style={{ color: 'white' }} />} /> : 'Create'}
           </button>
           <p className="form__text">

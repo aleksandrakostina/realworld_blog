@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getToken, removeToken, setToken } from '../utils/getToken';
+import { getToken, removeToken, setToken } from '../utils/token';
 import BlogServicesContext from './BlogServicesContext/BlogServicesContext';
 import { AuthContext } from './useAuth';
 

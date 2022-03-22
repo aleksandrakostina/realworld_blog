@@ -4,7 +4,7 @@ import './App.scss';
 import 'antd/dist/antd.min.css';
 import ArticleListPage from '../ArticleListPage';
 import ArticlePage from '../ArticlePage';
-import BlogServicesContext from '../BlogServicesContext/BlogServicesContext';
+import BlogServicesContext from '../BlogServicesContext';
 import BlogServices from '../../services/BlogServices';
 import NotFound from '../NotFound';
 import SignIn from '../SignIn';

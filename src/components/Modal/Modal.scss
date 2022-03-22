@@ -5,15 +5,15 @@
   background: $background-color-base;
   border: 1px solid $border-color-base;
   box-shadow: $box-shadow-modal;
-  border-radius: 6px;
+  border-radius: $border-radius-modal;
   width: 100%;
 
   &--size-l {
-    max-width: 938px;
+    max-width: $width-modal-l;
   }
 
   &--size-s {
-    max-width: 384px;
+    max-width: $width-modal-s;
   }
 
   &__content {
@@ -25,12 +25,12 @@
   }
 
   &__title {
-    font-family: Roboto;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 28px;
+    font-family: $font-family-secondary;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-text-l;
+    line-height: $line-height-xl;
     text-align: center;
-    color: $text-secondary-color;
+    color: $text-color-third;
   }
 }
 
@@ -44,129 +44,44 @@
     border-top: 1px solid #e8e8e8;
 
     & > * {
-      font-family: Roboto;
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 22px;
-      color: #595959;
+      font-family: $font-family-secondary;
+      font-weight: $font-weight-regular;
+      font-size: $font-size-text-xs;
+      line-height: $line-height-s;
+      color: $form-secondary-color-text;
     }
   }
 
-  &__submit {
+  &__btn-submit {
     width: 100%;
-    font-family: Roboto;
     margin-top: 21px;
     margin-bottom: 8px;
-    background: $primary-color;
-    border-radius: 4px;
-    font-family: Roboto;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 24px;
-    text-align: center;
-    color: $btn-primary-color;
-    border: 0;
-    height: 40px;
-    padding: 0 15px;
-    position: relative;
-    cursor: pointer;
-
-    &:disabled {
-      opacity: 0.7;
-    }
-
-    & .ant_spin_spinning {
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
   }
 
   &__text {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 20px;
+    font-family: $font-family-secondary;
+    font-weight: $font-weight-regular;
+    font-size: $font-size-text-xxs;
+    line-height: $line-height-xs;
     text-align: center;
-    color: #8c8c8c;
+    color: $form-primary-color-text;
     margin: 0;
   }
 
   &__link {
-    color: $primary-color;
+    color: $brand-color;
+    transition: text-decoration 0.4s;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:focus-visible {
+      text-decoration: underline;
+    }
   }
-}
-
-.label {
-  font-family: Roboto;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 22px;
-  color: $text-secondary-color;
-}
-
-.input {
-  display: block;
-  width: 100%;
-  padding: 8px 12px;
-  font-family: Roboto;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: $text-color;
-  background: $background-color-base;
-  border: 1px solid $border-color-base;
-  border-radius: 4px;
-
-  &--error {
-    border: 1px solid $error-color;
-  }
-
-  &:invalid {
-    border: 1px solid $error-color;
-  }
-
-  &::placeholder {
-    font-family: Roboto;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    color: #bfbfbf;
-  }
-}
-
-.textarea {
-  display: block;
-  width: 100%;
-  padding: 8px 12px;
-  font-family: Roboto;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: $text-color;
-  background: $background-color-base;
-  border: 1px solid $border-color-base;
-  border-radius: 4px;
-  resize: none;
-  height: 168px;
-
-  &::placeholder {
-    font-family: Roboto;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    color: #bfbfbf;
-  }
-}
-
-.error {
-  font-family: Roboto;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 22px;
-  color: $error-color;
-  margin-top: 2px;
 }
 
 @media screen and (max-width: 460px) {

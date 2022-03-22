@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useFormContext } from 'react-hook-form';
 
-const FormInput = ({ name, label, placeholder, rules, type, ...props }) => {
+const FormTextarea = ({ name, label, placeholder, rules, type, ...props }) => {
   const {
     register,
     formState: { errors },
@@ -12,9 +12,9 @@ const FormInput = ({ name, label, placeholder, rules, type, ...props }) => {
   return (
     <label className="label">
       {label && label}
-      <input
+      <textarea
         type={type}
-        className={classNames('input', { 'input--error': errors[name] })}
+        className={classNames('textarea', { 'textarea--error': errors[name] })}
         placeholder={placeholder}
         {...register(name, rules)}
         {...props}
@@ -24,11 +24,11 @@ const FormInput = ({ name, label, placeholder, rules, type, ...props }) => {
   );
 };
 
-FormInput.defaultProps = {
+FormTextarea.defaultProps = {
   label: '',
 };
 
-FormInput.propTypes = {
+FormTextarea.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
   placeholder: PropTypes.string.isRequired,
@@ -36,4 +36,4 @@ FormInput.propTypes = {
   type: PropTypes.string.isRequired,
 };
 
-export default FormInput;
+export default FormTextarea;

@@ -1,4 +1,4 @@
-import { getToken } from '../utils/getToken';
+import { getToken } from '../utils/token';
 
 const GET = 'GET';
 const POST = 'POST';
@@ -10,12 +10,12 @@ export default class BlogServices {
 
   articlesOnPage = 5;
 
-  getResponse = (url, options) =>
+  getResponse = (url, options, resp = true) =>
     fetch(`${this.baseUrl}/${url}`, options).then((response) => {
       if (!response.ok) {
         throw new Error('Could not get data');
       }
-      if (options.method === DELETE) {
+      if (!resp) {
         return true;
       }
       return response.json();
@@ -41,12 +41,12 @@ export default class BlogServices {
 
   getArticles = (page) => {
     const offset = this.articlesOnPage * (page - 1);
-    const options = this.getOptions({ method: GET });
+    const options = this.getOptions({ method: GET, token: true });
     return this.getResponse(`articles?limit=${this.articlesOnPage}&offset=${offset}`, options);
   };
 
   getArticle = (id) => {
-    const options = this.getOptions({ method: GET });
+    const options = this.getOptions({ method: GET, token: true });
     return this.getResponse(`articles/${id}`, options);
   };
 
@@ -77,11 +77,21 @@ export default class BlogServices {
 
   deleteArticle = (id) => {
     const options = this.getOptions({ method: DELETE, token: true });
-    return this.getResponse(`articles/${id}`, options);
+    return this.getResponse(`articles/${id}`, options, false);
   };
 
   updateArticle = (id, article) => {
     const options = this.getOptions({ method: PUT, body: article, token: true });
     return this.getResponse(`articles/${id}`, options);
+  };
+
+  favoriteArticle = (id) => {
+    const options = this.getOptions({ method: POST, token: true });
+    return this.getResponse(`articles/${id}/favorite`, options);
+  };
+
+  unFavoriteArticle = (id) => {
+    const options = this.getOptions({ method: DELETE, token: true });
+    return this.getResponse(`articles/${id}/favorite`, options);
   };
 }

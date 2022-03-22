@@ -51,7 +51,10 @@ const EditArticle = () => {
         message.success('The article is updated');
         navigate(`/articles/${article.slug}`);
       })
-      .catch(() => setIsError(true));
+      .catch(() => {
+        setIsError(true);
+        message.error('The article was not updated!');
+      });
   };
 
   if (!Object.keys(article).length) {

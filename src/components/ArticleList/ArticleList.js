@@ -6,7 +6,9 @@ import Article from '../Article';
 const ArticleList = ({ articles, user }) => (
   <div className="posts">
     {articles.map((article) => (
-      <Article key={article.id} article={article} isShort user={user} />
+      <div className="posts__item" key={article.id}>
+        <Article article={article} isShort user={user} />
+      </div>
     ))}
   </div>
 );

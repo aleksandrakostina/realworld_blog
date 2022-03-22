@@ -47,7 +47,7 @@ const SignIn = () => {
             />
           </div>
           {isError && <Alert closable message="Email or password is invalid" type="error" showIcon />}
-          <button type="submit" className="btn form__submit" disabled={isSubmitting}>
+          <button type="submit" className="btn-submit form__btn-submit" disabled={isSubmitting}>
             {isSubmitting ? <Spin indicator={<LoadingOutlined style={{ color: 'white' }} />} /> : 'Login'}
           </button>
           <p className="form__text">

@@ -17,14 +17,14 @@ body {
 }
 
 body {
-  font-family: Inter;
+  font-family: $font-family-primary;
   font-style: normal;
-  font-weight: normal;
+  font-weight: $font-weight-regular;
   margin: 0;
 }
 
 .app {
-  background: $background-app;
+  background: $background-color-app;
   min-height: 100vh;
   height: 100%;
   display: flex;
@@ -40,7 +40,7 @@ body {
 
   &__content {
     padding: 0 22px 20px;
-    max-width: 960px;
+    max-width: $width-content;
     width: 100%;
     margin: 0 auto;
     display: flex;
@@ -50,46 +50,20 @@ body {
   }
 }
 
-.ant-pagination {
-  display: flex !important;
-  justify-content: center !important;
-  margin-top: auto !important;
-  margin-bottom: 17px !important;
-  font-family: Inter !important;
-  font-size: 12px !important;
-  line-height: 22px !important;
-}
-
-.ant-pagination-item-active {
-  background: $primary-color !important;
-  border-radius: 4px !important;
-
-  a {
-    color: $btn-primary-color !important;
-  }
-
-  &:hover {
-    a {
-      color: $btn-primary-color !important;
-    }
-  }
-}
-
-.btn {
-  border-radius: 4px;
-  background: $primary-color;
+.btn-submit {
+  border-radius: $border-radius-btn-submit;
+  background: $brand-color;
   color: $btn-primary-color;
-  font-family: Inter;
-  padding: 6px 20px;
+  font-family: $font-family-secondary;
+  padding: 8px 20px;
   display: inline-block;
   transition: opacity 0.4s;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: $font-size-text-s;
+  line-height: $line-height-m;
   cursor: pointer;
   border: 0;
 
   &:hover {
-    color: $btn-primary-color;
     opacity: 0.8;
   }
 
@@ -99,27 +73,27 @@ body {
 }
 
 .button {
-  font-weight: 400;
+  font-weight: $font-weight-regular;
   cursor: pointer;
-  border-radius: 5px;
-  font-family: Inter;
+  border-radius: $border-radius-btn;
+  font-family: $font-family-primary;
   transition: color 0.4s, background 0.4s;
 
   &--size-l {
-    font-size: 18px;
-    line-height: 28px;
+    font-size: $font-size-text-m;
+    line-height: $line-height-xl;
     padding: 7px 18px;
   }
 
   &--size-m {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: $font-size-text-s;
+    line-height: $line-height-m;
     padding: 8px 38px;
   }
 
   &--size-s {
-    font-size: 14px;
-    line-height: 22px;
+    font-size: $font-size-text-xs;
+    line-height: $line-height-s;
     padding: 6px 15px;
   }
 
@@ -146,13 +120,13 @@ body {
   }
 
   &--info {
-    color: $primary-color;
-    border: 1px solid $primary-color;
+    color: $brand-color;
+    border: 1px solid $brand-color;
     background: $background-color-base;
 
     &:hover {
       color: $btn-primary-color;
-      background: $primary-color;
+      background: $brand-color;
     }
   }
 
@@ -168,8 +142,8 @@ body {
   }
 
   &--neutral {
-    color: $text-color;
-    border: 1px solid $text-color;
+    color: $text-color-primary;
+    border: 1px solid $text-color-primary;
     background: $background-color-base;
 
     &:hover {
@@ -179,7 +153,65 @@ body {
   }
 }
 
-@media screen and (max-width: 375px) {
+.label {
+  font-family: $font-family-secondary;
+  font-weight: $font-weight-regular;
+  font-size: $font-size-text-xs;
+  line-height: $line-height-s;
+  color: $text-color-third;
+}
+
+.input,
+.textarea {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  font-family: $font-family-secondary;
+  font-weight: $font-weight-regular;
+  font-size: $font-size-text-s;
+  line-height: $line-height-m;
+  color: $text-color-primary;
+  background: $background-color-base;
+  border: 1px solid $border-color-base;
+  border-radius: $border-radius-input;
+
+  &--error {
+    border: 1px solid $error-color;
+  }
+
+  &:invalid {
+    border: 1px solid $error-color;
+  }
+
+  &::placeholder {
+    font-family: $font-family-secondary;
+    font-weight: $font-weight-regular;
+    font-size: $font-size-text-s;
+    line-height: $line-height-m;
+    color: $placeholder-color-base;
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid $brand-color;
+  }
+}
+
+.textarea {
+  resize: none;
+  height: 168px;
+}
+
+.error {
+  font-family: $font-family-secondary;
+  font-weight: $font-weight-regular;
+  font-size: $font-size-text-xs;
+  line-height: $line-height-s;
+  color: $error-color;
+  margin-top: 2px;
+}
+
+@media screen and (max-width: 480px) {
   .app {
     &__content {
       padding: 0;

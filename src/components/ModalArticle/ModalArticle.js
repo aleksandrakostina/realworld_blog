@@ -5,7 +5,9 @@ import { Alert, Spin } from 'antd';
 import { FormProvider, useForm } from 'react-hook-form';
 import validation from '../../utils/validation';
 import FormInput from '../FormInput';
+import FormTextArea from '../FormTextarea';
 import Modal from '../Modal';
+import './ModalArticle.scss';
 
 const ModalArticle = ({ onSubmit, defaultValues, isError, name }) => {
   const { body, title, description, tagList } = defaultValues;
@@ -18,12 +20,8 @@ const ModalArticle = ({ onSubmit, defaultValues, isError, name }) => {
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
-    if (Object.keys(defaultValues).length) {
-      if (tagList.length) {
-        setTags(tagList.map((tag, idx) => ({ id: idx, title: tag })));
-      } else {
-        setTags([{ id: 1, title: '' }]);
-      }
+    if (Object.keys(defaultValues).length && tagList.length) {
+      setTags(tagList.map((tag, idx) => ({ id: idx, title: tag })));
     } else {
       setTags([{ id: 1, title: '' }]);
     }
@@ -106,7 +104,7 @@ const ModalArticle = ({ onSubmit, defaultValues, isError, name }) => {
             />
           </div>
           <div className="form-article__group">
-            <FormInput
+            <FormTextArea
               label="Text"
               type="text"
               name="body"
@@ -122,7 +120,7 @@ const ModalArticle = ({ onSubmit, defaultValues, isError, name }) => {
             </fieldset>
           </div>
           {isError && <Alert closable message="Failed to create article" type="error" showIcon />}
-          <button type="submit" className="btn form-article__submit" disabled={isSubmitting}>
+          <button type="submit" className="btn-submit form-article__btn-submit" disabled={isSubmitting}>
             {isSubmitting ? <Spin indicator={<LoadingOutlined style={{ color: 'white' }} />} /> : 'Send'}
           </button>
         </form>

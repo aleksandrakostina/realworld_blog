@@ -4,32 +4,48 @@
 .header {
   background: $background-color-base;
 
+  &__link {
+    &:focus-visible {
+      & > * {
+        color: $brand-color;
+      }
+    }
+  }
+
   &__title {
-    font-family: Inter;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 28px;
+    font-family: $font-family-primary;
+    font-weight: $font-weight-regular;
+    font-size: $font-size-text-m;
+    line-height: $line-height-xl;
     color: $heading-color;
     margin: 0;
     transition: color 0.4s;
 
     &:hover {
-      color: $primary-color;
+      color: $brand-color;
     }
   }
 
   &__btn {
     margin-right: 19px;
-    display: inline-block;
 
     &:last-of-type {
       margin-right: 0;
+    }
+
+    &:focus-visible {
+      text-decoration: underline;
     }
   }
 
   &__avatar {
     display: inline-block;
     margin-left: 13px;
+
+    &:focus-visible {
+      outline: auto;
+      outline-color: black;
+    }
   }
 
   &__profile {
@@ -46,6 +62,16 @@
   &__logout-icon {
     display: none;
   }
+
+  &__create-post {
+    &:focus-visible {
+      text-decoration: underline;
+    }
+
+    &:active {
+      text-decoration: none;
+    }
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -61,11 +87,11 @@
     &__logout-icon {
       display: block;
       cursor: pointer;
-      font-size: 24px;
+      font-size: $font-size-text-xl;
       transition: color 0.4s;
 
       &:hover {
-        color: $primary-color;
+        color: $brand-color;
       }
     }
   }
@@ -86,7 +112,7 @@
     }
 
     &__title {
-      font-size: 16px;
+      font-size: $font-size-text-s;
     }
 
     &__create-post {
@@ -98,8 +124,8 @@
 
       &::before {
         content: '+';
-        font-size: 20px;
-        line-height: 26px;
+        font-size: $font-size-text-l;
+        line-height: $line-height-l;
       }
     }
   }
