@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { LoadingOutlined } from '@ant-design/icons';
@@ -10,14 +10,28 @@ import { useAuth } from '../../../hooks/useAuth';
 
 const SignInPage = () => {
   const { signIn } = useAuth();
-
   const methods = useForm();
   const {
     handleSubmit,
     formState: { isSubmitting },
+    setError,
   } = methods;
+  const [isError, setIsError] = useState(false);
 
-  const onSubmit = async (data) => signIn(data).catch((err) => message.error(err.message));
+  useEffect(() => {
+    if (isError) {
+      setError('email', { type: 'server' });
+      setError('password', { type: 'server' });
+    }
+  }, [setError, isError]);
+
+  const onSubmit = async (data) => {
+    setIsError(false);
+    return signIn(data).catch((err) => {
+      setIsError(true);
+      message.error(err.message);
+    });
+  };
 
   return (
     <Modal title="Sign In" className="modal modal--size-s">
