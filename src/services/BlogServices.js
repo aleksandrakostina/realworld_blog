@@ -1,4 +1,6 @@
-import { getToken } from '../utils/token';
+import TokenServices from './TokenServices';
+
+const tokenServices = new TokenServices();
 
 const GET = 'GET';
 const POST = 'POST';
@@ -11,15 +13,16 @@ export default class BlogServices {
   articlesOnPage = 5;
 
   getResponse = (url, options, resp = true) =>
-    fetch(`${this.baseUrl}/${url}`, options).then((response) => {
-      if (!response.ok) {
-        throw new Error('Could not get data');
-      }
-      if (!resp) {
-        return true;
-      }
-      return response.json();
-    });
+    fetch(`${this.baseUrl}/${url}`, options)
+      .then((response) => {
+        if (!resp) {
+          return true;
+        }
+        return response.json();
+      })
+      .catch(() => {
+        throw new Error('Error: request failed');
+      });
 
   getOptions = (options) => {
     const { method, token, body } = options;
@@ -31,7 +34,7 @@ export default class BlogServices {
       },
     };
     if (token) {
-      objOptions.headers.Authorization = `Token ${getToken()}`;
+      objOptions.headers.Authorization = `Token ${tokenServices.getToken()}`;
     }
     if (body) {
       objOptions.body = JSON.stringify(body);

@@ -11,6 +11,9 @@ const validation = {
     minLength: { value: 6, message: 'Your password needs to be at least 6 characters.' },
     maxLength: { value: 40, message: 'Your password needs to be no more 40 characters.' },
   },
+  passwordOptional: {
+    required: { value: false },
+  },
   username: {
     required: { value: true, message: 'Please fill in your username' },
     maxLength: { value: 20, message: 'Your username needs to be no more 20 characters.' },

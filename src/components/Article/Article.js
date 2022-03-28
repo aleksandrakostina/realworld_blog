@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Article.scss';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
@@ -7,10 +7,10 @@ import ReactMarkdown from 'react-markdown';
 import { HeartFilled, HeartOutlined, UserOutlined } from '@ant-design/icons';
 import Avatar from 'antd/lib/avatar/avatar';
 import { message, Popconfirm } from 'antd';
-import BlogServicesContext from '../BlogServicesContext/BlogServicesContext';
+import { useBlogServices } from '../../hooks/useBlogServices';
 
 const Article = ({ article, isShort, user }) => {
-  const blog = useContext(BlogServicesContext);
+  const { deleteArticle, unFavoriteArticle, favoriteArticle } = useBlogServices();
   const navigate = useNavigate();
   const [favorited, setFavorited] = useState();
   const [favoritesCount, setFavoritesCount] = useState();
@@ -21,8 +21,7 @@ const Article = ({ article, isShort, user }) => {
   }, [article]);
 
   const handleDeleteArticle = () =>
-    blog
-      .deleteArticle(article.slug)
+    deleteArticle(article.slug)
       .then(() => {
         navigate('articles');
         message.success('The article is deleted successefully!');
@@ -34,12 +33,12 @@ const Article = ({ article, isShort, user }) => {
   const handleFavoriteClick = () => {
     if (user) {
       if (favorited) {
-        blog.unFavoriteArticle(article.slug).then(() => {
+        unFavoriteArticle(article.slug).then(() => {
           setFavorited(false);
           setFavoritesCount((prevFavoritesCount) => prevFavoritesCount - 1);
         });
       } else {
-        blog.favoriteArticle(article.slug).then(() => {
+        favoriteArticle(article.slug).then(() => {
           setFavorited(true);
           setFavoritesCount((prevFavoritesCount) => prevFavoritesCount + 1);
         });

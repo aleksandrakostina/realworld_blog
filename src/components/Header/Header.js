@@ -2,7 +2,7 @@ import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../useAuth';
+import { useAuth } from '../../hooks/useAuth';
 import './Header.scss';
 
 const Header = () => {
