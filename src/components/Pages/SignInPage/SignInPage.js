@@ -17,7 +17,7 @@ const SignInPage = () => {
     formState: { isSubmitting },
   } = methods;
 
-  const onSubmit = async (data) => signIn(data).catch(() => message.error('Failed to login user'));
+  const onSubmit = async (data) => signIn(data).catch((err) => message.error(err.message));
 
   return (
     <Modal title="Sign In" className="modal modal--size-s">
